@@ -9,6 +9,7 @@ namespace Farmacia.Core.Interfaces
 {
     public  interface IFarmaciaRepository
     {
-        Task<IEnumerable<Entities.Farmacia>> GetFarmacias();
+        public Task<IEnumerable<Entities.Farmacia>> GetFarmacias();
+        public Task<Entities.Farmacia> GetFarmacia(int id);
     }
 }

@@ -26,6 +26,13 @@ namespace Farmacia.Api.Controllers
             var farmacias = await _farmaciaRepository.GetFarmacias();
             return Ok(farmacias);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetId(int id)
+        {
+            var farmacia = await _farmaciaRepository.GetFarmacia(id);
+            return Ok(farmacia);
+        }
     }
 
 }

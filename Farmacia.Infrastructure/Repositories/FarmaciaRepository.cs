@@ -21,5 +21,10 @@ namespace Farmacia.Infrastructure.Repositories
             var farmacias = await _context.Farmacia.ToListAsync();
             return farmacias;
         }
+        public async Task<Core.Entities.Farmacia> GetFarmacia(int id)
+        {
+            var farmacia = await _context.Farmacia.FirstOrDefaultAsync(x=> x.IdFamacia==id);
+            return farmacia;
+        }
     }
-}
+} 

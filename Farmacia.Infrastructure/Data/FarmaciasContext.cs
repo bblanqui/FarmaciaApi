@@ -1,4 +1,5 @@
 ﻿using System;
+using Farmacia.Infrastructure.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -24,29 +25,7 @@ namespace Farmacia.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Core.Entities.Farmacia>(entity =>
-            {
-                entity.HasKey(e => e.IdFamacia);
-
-                entity.Property(e => e.IdFamacia)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("Id_Famacia");
-
-                entity.Property(e => e.Addres)
-                    .HasColumnName("Direccion")
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Online)
-                    .HasColumnName("En_Linea");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("Nombre")
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
-                entity.Property(e => e.State)
-                    .HasColumnName("Estado");
-            });
+            modelBuilder.ApplyConfiguration(new FarmaciaConfiguration());
 
         }
 
