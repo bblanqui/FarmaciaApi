@@ -3,6 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
+
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farmacia.Api", "Farmacia.Api\Farmacia.Api.csproj", "{9A194E1F-381F-4ED8-B5D0-59B1A7F27583}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farmacia.Core", "Farmacia.Core\Farmacia.Core.csproj", "{E69AC3D0-7848-4A1B-BE5B-77B4A1756D25}"
@@ -49,6 +50,12 @@ Global
 		{7A07B8B8-34C3-4061-B2F9-2F95553BF938} = {310A98EE-10A0-4255-BCD0-3C598C56EECF}
 		{C2927D9E-0410-497E-9DBF-859A62A0EEC9} = {310A98EE-10A0-4255-BCD0-3C598C56EECF}
 	EndGlobalSection
+
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EAF5C5D9-09E8-487F-9D7C-B66E84956D1F}
 	EndGlobalSection
