@@ -11,6 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Farmacia.Core.Interfaces;
+using Farmacia.Infrastructure.Data;
+using Farmacia.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Farmacia.Api
 {
@@ -32,6 +36,11 @@ namespace Farmacia.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Farmacia.Api", Version = "v1" });
             });
+
+            services.AddTransient<IFarmaciaRepository, FarmaciaRepository>();
+
+            services.AddDbContext<FarmaciasContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("Farmacias")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
