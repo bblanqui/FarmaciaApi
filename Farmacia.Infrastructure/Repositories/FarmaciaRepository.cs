@@ -26,5 +26,11 @@ namespace Farmacia.Infrastructure.Repositories
             var farmacia = await _context.Farmacia.FirstOrDefaultAsync(x=> x.IdFamacia==id);
             return farmacia;
         }
+
+        public async Task InsertPost(Core.Entities.Farmacia farmacia)
+        {
+            _context.Farmacia.Add(farmacia);
+            await _context.SaveChangesAsync();
+        }
     }
 } 
