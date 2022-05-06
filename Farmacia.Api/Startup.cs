@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Farmacia.Core.Interfaces;
 using Farmacia.Infrastructure.Data;
+using Farmacia.Infrastructure.Data.Configurations;
 using Farmacia.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,17 +31,26 @@ namespace Farmacia.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
+            //ignorar referencia circular
+            services.AddControllers().AddNewtonsoftJson
+                (
+                 options =>
+                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
+            //servicio de swager
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Farmacia.Api", Version = "v1" });
             });
 
             services.AddTransient<IFarmaciaRepository, FarmaciaRepository>();
+            //AUTO MAPPER
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddDbContext<FarmaciasContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Farmacias")));
+
+            services.Configure<FarmaciaConfigurationMongo>(Configuration.GetSection("StoreDatabase"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,10 +59,10 @@ namespace Farmacia.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Farmacia.Api v1"));
+           
             }
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Farmacia.Api v1"));
             app.UseHttpsRedirection();
 
             app.UseRouting();

@@ -11,5 +11,7 @@ namespace Farmacia.Core.Interfaces
     {
         public Task<IEnumerable<Entities.Farmacia>> GetFarmacias();
         public Task<Entities.Farmacia> GetFarmacia(int id);
+
+        public Task InsertPost(Core.Entities.Farmacia farmacia);
     }
 }
